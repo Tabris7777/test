@@ -27,7 +27,10 @@ import echarts from 'echarts'
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '堆叠区域图'
+          text: '堆叠区域图',
+          textStyle:{
+                color:"#fff"
+            }
         },
         tooltip: {
           trigger: 'axis',
@@ -35,11 +38,15 @@ import echarts from 'echarts'
             type: 'cross',
             label: {
               backgroundColor: '#6a7985'
-            }
+            },
+            
           }
         },
         legend: {
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎'],
+          textStyle:{
+                color:"#fff"
+            }
         },
         toolbox: {
           feature: {
@@ -56,13 +63,26 @@ import echarts from 'echarts'
           {
             type: 'category',
             boundaryGap: false,
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            axisLabel: {
+                show: true,
+                textStyle: {
+                  color: "#fff"  //这里用参数代替了
+                }
+              },
           }
         ],
         yAxis: [
           {
-            type: 'value'
-          }
+            type: 'value',
+             axisLabel: {
+                show: true,
+                textStyle: {
+                  color: "#fff"  //这里用参数代替了
+                }
+              },
+          },
         ],
         series: [
           {
@@ -127,5 +147,7 @@ import echarts from 'echarts'
   .showChart{
       padding-left:40px;
     padding-top:50px;
+    height:100%;
+    background:#052345;
   }
 </style>

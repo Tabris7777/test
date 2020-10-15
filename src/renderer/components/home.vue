@@ -1,14 +1,16 @@
 <template>
   <div class="home">
+    <div class="homeContent">
+      <div class="title">电力平衡计算</div>
 
-    <div class="title">电力平衡计算</div>
-
-    <div>
-       <el-button type="primary" @click="openTheDoor">配比选择</el-button>
-        <el-button type="primary">其他1</el-button>
-        <el-button type="primary">其他2</el-button>
-        <el-button type="primary">其他3</el-button>
+      <div>
+         <el-button type="primary" @click="openTheDoor">配比选择</el-button>
+          <el-button type="primary">其他1</el-button>
+          <el-button type="primary">其他2</el-button>
+          <el-button type="primary">其他3</el-button>
+      </div>
     </div>
+    
    
 
 
@@ -85,11 +87,18 @@
     flex-direction: column;
     width:100%;
     height:100%;
+    background:url("../assets/bg.png") no-repeat;
     .title{
       margin-bottom:50px;
       font-size: 48px;
-      font-family: BentonSans-Bold, BentonSans;
+      font-family: PingFangSC-Medium, PingFang SC;
       font-weight: bold;
+      text-align:center;
+    }
+    .homeContent{
+      background:#fff;
+      padding:50px 50px 80px 50px;
+      border-radius: 15px;
     }
   }
   

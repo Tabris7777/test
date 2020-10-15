@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow,Menu,dialog } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -22,7 +22,45 @@ function createWindow () {
     useContentSize: true,
     width: 1920
   })
+  var  template = [
+    {
+      label: '文件',
+      submenu: [
+        // {
+        //   label: '打开',
+        //   click: () => {
+        //     mainWindow.webContents.send('action', 'openFile')
+        //   }
+        // },
+        {
+          label: '退出',
+          click: () => {
+            mainWindow.close()
+          }
+        }
+      ]
+    },
+    {
+      label: '关于',
+      submenu: [
+        {
+          label: '盼博科技',
+          click: () => {
+            dialog.showMessageBox({
+              type: 'info',
+              title: '盼博科技',
+              message: '盼博科技，智慧生活创造者'
+            })
+          }
+        }
+      ]
+    }
+  ]
 
+  var m = Menu.buildFromTemplate(template)
+
+  Menu.setApplicationMenu(m)
+  
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {

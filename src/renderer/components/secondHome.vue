@@ -19,7 +19,11 @@
         :file-list="fileList" 
         accept = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
         :auto-upload="false">
-        <el-button  type="primary">光伏</el-button>
+        <!-- <el-button  type="primary">光伏</el-button> -->
+        <div class="homeIcon">
+          <i></i>
+          光伏
+        </div>
         <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </el-upload>
 
@@ -32,7 +36,10 @@
         :file-list="fileList2" 
         accept = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
         :auto-upload="false">
-        <el-button  type="primary">风电</el-button>
+        <div class="homeIcon">
+          <i></i>
+          风电
+        </div>
         <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </el-upload>
 
@@ -44,17 +51,24 @@
         :file-list="fileList3" 
         accept = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
         :auto-upload="false">
-        <el-button  type="primary">负荷</el-button>
+        <div class="homeIcon">
+          <i></i>
+          负荷
+        </div>
         <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </el-upload>
 
 
       
 
-        <div v-if="item.id==3">
-          <el-button   type="primary" @click="isHydropower(item)">水电</el-button>
-          <span>系统工作出力：{{showMsg1}}</span>
-          <span>每月电量:{{showMsg2}}</span>
+        <div v-if="item.id==3" >
+          <div class="homeIcon" @click="isHydropower(item)">
+          <i></i>
+          水电
+        </div>
+          <!-- <el-button   type="primary" >水电</el-button> -->
+          <span class="fivefiveopen">系统工作出力：{{showMsg1}}</span>
+          <span class="fivefiveopen">每月电量:{{showMsg2}}</span>
         </div>
         <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </div>
@@ -185,6 +199,20 @@ import { remote } from 'electron'
   .secondHome{
     padding-left:40px;
     padding-top:50px;
+    background:url("../assets/bg2.png")no-repeat;
+    height:100%;
+  }
+  .el-breadcrumb__item .el-breadcrumb__inner{
+    color:#fff !important;
+  }
+  .el-breadcrumb__item:last-child .el-breadcrumb__inner{
+    color:#90BFFF !important;
+  }
+  .el-breadcrumb{
+    color:#fff;
+  }
+  .el-upload-list__item-name{
+    color:#fff!important;
   }
   .itemContent{
     padding-top:100px;
@@ -212,5 +240,28 @@ import { remote } from 'electron'
     }
     .el-upload-list {
       height: 40px !important;
+    }
+
+    .homeIcon{
+      background: rgba(28, 68, 140, 0.5);
+      border-radius: 5px;
+      border: 1px solid #3593A6;
+      color: #4EFFFF;
+      width:120px;
+      height:100px;
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .homeIcon i{
+      width:34px;
+      height:44px;
+      display:inline-block;
+      background:url("../assets/icon.png")no-repeat;
+      margin-bottom:10px;
+    }
+    .fivefiveopen{
+      color:#fff;
     }
 </style>
