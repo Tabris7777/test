@@ -3,7 +3,10 @@ const getDataFromPython = (path) => {
         const exec = require('child_process').exec
         let pythonData = []
         let resultObject = {}
+        console.log(1)
         exec(`python3 ${path}`, (error, stdout, stderr) => {
+            console.log(error)
+            console.log(stdout)
             if (stdout.length > 0) {
                 let patt = /\[.+\]/g;
                 let result = stdout.match(patt)

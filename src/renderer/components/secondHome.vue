@@ -152,7 +152,10 @@ import getDataFromPython  from "../assets/pyData.js";
 
       },
       async handleChange(file,fileList){
-        let data = await getDataFromPython(file.raw.path);
+        let path = file.raw.path;
+        console.log(path)
+        let pythonPath = path.replace('8760h_PEBS_base.xlsx','dianli001.py')
+        let data = await getDataFromPython(pythonPath);
         console.log(data);
         localStorage.setItem("tableData",JSON.stringify(data))
         if(fileList.length>0){
