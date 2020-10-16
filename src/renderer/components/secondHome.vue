@@ -109,7 +109,7 @@
 
 <script>
 import { remote } from 'electron'
-
+import getDataFromPython  from "../assets/pyData.js";
   export default {
     name: 'landing-page',
     data () {
@@ -151,7 +151,10 @@ import { remote } from 'electron'
           this.showMsg2=this.input2;
 
       },
-      handleChange(file,fileList){
+      async handleChange(file,fileList){
+        let data = await getDataFromPython(file.raw.path);
+        console.log(data);
+        localStorage.setItem("tableData",JSON.stringify(data))
         if(fileList.length>0){
           this.fileList=[fileList[fileList.length-1]];
         }

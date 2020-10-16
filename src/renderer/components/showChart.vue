@@ -16,18 +16,44 @@ import echarts from 'echarts'
     name: 'landing-page',
     data () {
       return {
-          checkList:{}
+          checkList:{},
+          tableData:[]
       };
     },
     created(){
       this.checkList=this.$route.query.checkList;
     },
     mounted(){
+        this.tableData=JSON.parse(localStorage.getItem("tableData"));
+        console.log(this.tableData);
+        let legendList=[];
+        let xData=[];
+        let yData=[];
+        let _this=this;
+        let totalArr=[];
+        let dataArr=[];
+        for(let item in this.tableData){
+            legendList.push(item);
+            let arr=[]
+            this.tableData[item].forEach((innerItem,index)=>{
+                // console.log(_this.sumArr(innerItem))
+                // arr.push(_this.sumArr(innerItem))
+                arr.push(_this.sumArr(innerItem))
+
+            })
+            totalArr.push(arr);
+
+            let arr2=[];
+            this.tableData[item].forEach((innerItem,index)=>{
+                arr2.push(index+1+"号")
+            })
+            dataArr=arr2;
+        }
         var myChart = echarts.init(document.getElementById('main'))
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text: '堆叠区域图',
+          text: '',
           textStyle:{
                 color:"#fff"
             }
@@ -43,7 +69,7 @@ import echarts from 'echarts'
           }
         },
         legend: {
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎'],
+          data: legendList,
           textStyle:{
                 color:"#fff"
             }
@@ -63,8 +89,7 @@ import echarts from 'echarts'
           {
             type: 'category',
             boundaryGap: false,
-            
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            data: dataArr,
             axisLabel: {
                 show: true,
                 textStyle: {
@@ -86,53 +111,41 @@ import echarts from 'echarts'
         ],
         series: [
           {
-            name: '邮件营销',
+            name: '总体',
             type: 'line',
             stack: '总量',
             areaStyle: {},
-            data: [120, 132, 101, 134, 90, 230, 210]
+            data: totalArr[0]
           },
           {
-            name: '联盟广告',
+            name: '缺电',
             type: 'line',
             stack: '总量',
             areaStyle: {},
-            data: [220, 182, 191, 234, 290, 330, 310]
+            data: totalArr[1]
           },
           {
-            name: '视频广告',
+            name: '弃电',
             type: 'line',
             stack: '总量',
             areaStyle: {},
-            data: [150, 232, 201, 154, 190, 330, 410]
+            data: totalArr[2]
           },
-          {
-            name: '直接访问',
-            type: 'line',
-            stack: '总量',
-            areaStyle: {},
-            data: [320, 332, 301, 334, 390, 330, 320]
-          },
-          {
-            name: '搜索引擎',
-            type: 'line',
-            stack: '总量',
-            label: {
-              normal: {
-                show: true,
-                position: 'top'
-              }
-            },
-            areaStyle: {},
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
-          }
+         
         ]
       }
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option)
     },
     methods: {
-       
+        sumArr(arr){
+            return arr.reduce(function(prev,cur){
+                // console.log(prev)
+                // console.log(cur)
+                // console.log("======")
+                return parseFloat(prev) + parseFloat(cur);
+            },0);
+        }
     }
   }
 </script>
