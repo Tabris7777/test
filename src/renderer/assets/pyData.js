@@ -4,7 +4,8 @@ const getDataFromPython = (path) => {
         let pythonData = []
         let resultObject = {}
         console.log(1)
-        exec(`python3 ${path}`, (error, stdout, stderr) => {
+        // exec(`python3 ${path}`, (error, stdout, stderr) => {
+        exec(`./venv/Scripts/python.exe ../../py/test1.py`, (error, stdout, stderr) => {
             console.log(error)
             console.log(stdout)
             if (stdout.length > 0) {
